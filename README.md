@@ -7,3 +7,4 @@ Features
 * low to medium usage = zero runtime costs
 * uses standard http wagon (custom wagon extensions not allowed in some CI environments)
 
+Oops, idea broken because API Gateway doesn't support binary responses!
