@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.davidmoten</groupId>
+    <artifactId>maven-s3-repo</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <aws.accessKeyId>${env.AWS_ACCESS_KEY}</aws.accessKeyId>
+        <aws.secretKey>${env.AWS_SECRET_ACCESS_KEY}</aws.secretKey>
+        <password.hash.key>${env.PASSWORD_HASH_KEY}</password.hash.key>
+        <mode>dev</mode>
+        <aws.sdk.version>1.11.59</aws.sdk.version>
+        <proxy.host>proxy.amsa.gov.au</proxy.host>
+        <proxy.port>8080</proxy.port>
+        <function.name>maven-repo-get</function.name>
+        <region>ap-southeast-2</region>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${maven.compiler.target}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+				<groupId>com.github.davidmoten</groupId>
+				<artifactId>aws-maven-plugin</artifactId>
+				<version>0.2.2</version>
+				<configuration>
+					<awsAccessKey>${aws.accessKeyId}</awsAccessKey>
+					<awsSecretAccessKey>${aws.secretKey}</awsSecretAccessKey>
+					<artifact>${project.build.directory}/${project.build.finalName}.jar</artifact>
+					<functionName>${function.name}</functionName>
+					<zipFilename>${project.build.directory}/${project.artifactId}.jar</zipFilename>
+					<region>${region}</region>
+					<httpsProxyHost>${proxy.host}</httpsProxyHost>
+					<httpsProxyPort>${proxy.port}</httpsProxyPort>
+				</configuration>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
