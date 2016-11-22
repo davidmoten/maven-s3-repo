@@ -7,4 +7,4 @@ Features
 * low to medium usage = zero runtime costs
 * uses standard http wagon (custom wagon extensions not allowed in some CI environments)
 
-Oops, idea broken because API Gateway doesn't support binary responses!
+One issue is that API Gateway doesn't support binary responses but it can return an HTTP redirect to a temporary authenticated S3 url which will return binary data. Plan is to make a proof-of-concept to see if maven http wagon is happy with redirects. Preliminary readings indicate it supports HTTP GET and HTTP PUT redirects so worth following up. I'll put this up soon.
