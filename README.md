@@ -1,5 +1,5 @@
 # maven-s3-repo
-Read from an S3-backed maven repository using standard http wagon authentication.
+Read from an S3-backed maven repository using standard http wagon authentication and serverless architecture.
 
 Features
 * uses S3 storage (3c/GB/month)
