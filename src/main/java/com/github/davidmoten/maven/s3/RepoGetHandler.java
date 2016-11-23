@@ -21,7 +21,8 @@ public class RepoGetHandler {
         // log.log(ctxt.toString());
 
         AmazonS3Client s3 = new AmazonS3Client();
-        return "{\"url\":\"https://github.com\"}";
+        // url will be passed through in "errorMessage" property
+        throw new RuntimeException("https://github.com");
     }
 
 }
