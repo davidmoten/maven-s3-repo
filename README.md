@@ -11,4 +11,4 @@ One issue is that API Gateway doesn't support binary responses but it can return
 
 ## Progress
 * 18 Nov 2016: AWS Gateway now supports binary inputs and responses.  
-* 23 Nov 2016: blocked by wildcard `{proxy+}` resources in API Gateway cannot have transformations applied to the response. This affects both the S3 redirect option and the binary mapping option.
+* 23 Nov 2016: **blocked** by wildcard `{proxy+}` resources in API Gateway cannot have transformations applied to the response. This affects both the S3 redirect option and the binary mapping option.
