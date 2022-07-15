@@ -12,7 +12,7 @@
         <aws.secretKey>${env.AWS_SECRET_ACCESS_KEY}</aws.secretKey>
         <password.hash.key>${env.PASSWORD_HASH_KEY}</password.hash.key>
         <mode>dev</mode>
-        <aws.sdk.version>1.11.59</aws.sdk.version>
+        <aws.sdk.version>1.12.261</aws.sdk.version>
         <proxy.host>proxy.amsa.gov.au</proxy.host>
         <proxy.port>8080</proxy.port>
         <function.name>maven-repo-get</function.name>
